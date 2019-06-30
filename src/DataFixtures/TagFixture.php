@@ -12,6 +12,8 @@ class TagFixture extends BaseFixture
         $this->createMany(10, 'main_tags', function() {
             $tag = new Tag();
             $tag->setName($this->faker->realText(20));
+
+            return $tag;
         });
 
         $manager->flush();

@@ -13,6 +13,7 @@ class SecurityController extends Controller
      */
     public function login(AuthenticationUtils $authenticationUtils)
     {
+        
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
@@ -21,5 +22,13 @@ class SecurityController extends Controller
             'last_username' => $lastUsername,
             'error' => $error
         ]);
+    }
+
+    /**
+     * @Route("/logout", name="app_logout")
+     */
+    public function logout()
+    {
+        throw new \Exception('Will be intercepted before getting here');
     }
 }
