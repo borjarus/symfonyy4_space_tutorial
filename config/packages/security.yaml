@@ -16,6 +16,10 @@ security:
                 authenticators:
                     - App\Security\LoginFormAuthenticator
 
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 2592000
+
 
 
             logout:
