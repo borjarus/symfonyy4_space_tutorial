@@ -8,10 +8,13 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Entity\Article;
 use Doctrine\ORM\EntityManagerInterface;
 
+/**
+ * @IsGranted("ROLE_ADMIN")
+ */
 class ArticleAdminController extends AbstractController
 {
     /**
-     * @Route("/admin/article/new")
+     * @Route("/admin/article/new", name="app_article_new")
      */
     public function new(EntityManagerInterface $em)
     {
