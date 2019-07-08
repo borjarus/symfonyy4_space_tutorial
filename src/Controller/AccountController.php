@@ -2,18 +2,20 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Routing\Annotation\Route;
+// TODO -1:53
 /**
  * IsGranted("ROLE_USER")
 */
-class AccountController extends Controller
+class AccountController extends BaseController
 {
     /**
      * @Route("/account", name="app_account")
      */
-    public function index()
+    public function index(LoggerInterface $logger)
     {
+        $logger->debug('Checking account page for '.$this->getUser()->getEmail());
         return $this->render('account/index.html.twig', [
                 
         ]);

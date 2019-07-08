@@ -9,7 +9,6 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserFixture extends BaseFixture
 {
-    // TODO -2:49
     private $psswordEncoder;
     public function __construct(UserPasswordEncoderInterface $psswordEncoder) {
         $this->psswordEncoder = $psswordEncoder;
