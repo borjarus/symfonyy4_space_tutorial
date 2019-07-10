@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
- * IsGranted("ROLE_ADMIN")
+ * IsGranted("ROLE_ADMIN_COMMENT")
 */
 class CommentAdminController extends Controller
 {
