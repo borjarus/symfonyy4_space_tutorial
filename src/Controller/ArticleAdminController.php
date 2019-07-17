@@ -17,7 +17,7 @@ class ArticleAdminController extends AbstractController
     /**
      * @Route("/admin/article/new", name="app_article_new")
      */
-    public function new(EntityManagerInterface $em)
+    public function new(EntityManagerInterface $em, Article $article)
     {
         die('TODO');
 
@@ -25,13 +25,11 @@ class ArticleAdminController extends AbstractController
     }
     /**
      * @Route("/admin/article/{id}/edit", name="app_article_edit")
+     * IsGranted("MENAGE", subject="article")
      */
     public function edit(Article $article)
     {
-        if ($article->getAuthor() != $this->getUser() && !$this->isGranted('ROLE_ADMIN_ARTICLE')) {
-            throw $this->createAccessDeniedException('No access!');
-        }
-        
+        $this->denyAccessUnlessGranted('MENAGE', $article);
         dd($article);
     }
 }
