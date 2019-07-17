@@ -19,11 +19,7 @@ class ArticleFixtures extends BaseFixture implements DependentFixtureInterface
         'mercury.jpeg',
         'lightspeed.png',
     ];
-    private static $articleAuthors = [
-        'Mike Ferengi',
-        'Amy Oort',
-        'borjarus'
-    ];
+
 
     protected function loadData(ObjectManager $manager)
     {
@@ -55,7 +51,7 @@ EOF
                 $article->setPublishedAt($this->faker->dateTimeBetween('-100 days', '-1 days'));
             }
 
-            $article->setAuthor($this->faker->randomElement(self::$articleAuthors))
+            $article->setAuthor($this->getRandomReference('main_users'))
                 ->setHeartCount($this->faker->numberBetween(5,100))
                 ->setImageFilename($this->faker->randomElement(self::$articleImages));
 
@@ -74,6 +70,7 @@ EOF
     public function getDependencies()
     {
         return [
+            UserFixture::class,
             TagFixture::class
         ];
     }
