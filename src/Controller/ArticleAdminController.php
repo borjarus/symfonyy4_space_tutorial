@@ -23,4 +23,15 @@ class ArticleAdminController extends AbstractController
 
         return new Response(sprintf('Hiya! New article id: #%d, slug: %s', $article->getId(), $article->getSlug()));
     }
+    /**
+     * @Route("/admin/article/{id}/edit", name="app_article_edit")
+     */
+    public function edit(Article $article)
+    {
+        if ($article->getAuthor() != $this->getUser() && !$this->isGranted('ROLE_ADMIN_ARTICLE')) {
+            throw $this->createAccessDeniedException('No access!');
+        }
+        
+        dd($article);
+    }
 }
