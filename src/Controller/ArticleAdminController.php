@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Form\ArticleFormType;
 
 /**
  * @IsGranted("ROLE_ADMIN_ARTICLE")
@@ -17,11 +18,13 @@ class ArticleAdminController extends AbstractController
     /**
      * @Route("/admin/article/new", name="app_article_new")
      */
-    public function new(EntityManagerInterface $em, Article $article)
+    public function new(EntityManagerInterface $em)
     {
-        die('TODO');
+        $form = $this->createForm(ArticleFormType::class);
 
-        return new Response(sprintf('Hiya! New article id: #%d, slug: %s', $article->getId(), $article->getSlug()));
+        return $this->render('article_admin/new.html.twig', [
+            'articleForm' => $form->createView()
+        ]);
     }
     /**
      * @Route("/admin/article/{id}/edit", name="app_article_edit")
