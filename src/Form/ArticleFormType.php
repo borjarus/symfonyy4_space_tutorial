@@ -31,7 +31,8 @@ class ArticleFormType extends AbstractType
                     return sprintf('(%d) %s', $user->getId(), $user->getEmail());
                 },
                 'placeholder' => 'Choose the author',
-                'choices' => $this->userRepository->findAllEmailAlphabetical()
+                'choices' => $this->userRepository->findAllEmailAlphabetical(),
+                'invalid_message' => 'Symfony is too smart for your hacking!'
             ])
         ;
         // [
