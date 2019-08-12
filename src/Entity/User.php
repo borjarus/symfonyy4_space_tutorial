@@ -10,6 +10,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @UniqueEntity(
+ *     fields={"email"},
+ *     message="I think you're already registered!"
+ * )
  */
 class User implements UserInterface
 {
@@ -23,6 +27,8 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @Groups("main")
+     * @Assert\NotBlank(message="Please enter an email")
+     * @Assert\Email()
      */
     private $email;
 
@@ -32,7 +38,7 @@ class User implements UserInterface
     private $roles = [];
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups("main")
      */
     private $firstName;
